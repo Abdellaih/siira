@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "logo": "سيرة",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "languages": "العربية · Français · English"
+  },
+  "home": {
+    "hero_title": "Votre CV, prêt pour chaque destination",
+    "hero_subtitle": "Remplissez vos informations une seule fois. Choisissez le style — canadien, classique, europass, Golfe. Téléchargez un PDF professionnel.",
+    "cta": "Créer mon CV gratuitement",
+    "cta_note": "Sans inscription · Données sur cet appareil",
+    "how_title": "Comment ça marche",
+    "step1_title": "Remplissez votre profil",
+    "step1_body": "Informations personnelles, expériences, formations, compétences. Une seule fois.",
+    "step2_title": "Choisissez votre style",
+    "step2_body": "Chaque style applique les conventions du pays cible. Passez de l'un à l'autre sans perdre vos données.",
+    "step3_title": "Téléchargez le PDF",
+    "step3_body": "Un PDF professionnel, avec texte sélectionnable et mise en page pixel-parfaite."
+  },
+  "editor": {
+    "saving": "Enregistrement…",
+    "download": "Télécharger PDF",
+    "downloading": "Génération…",
+    "edit_tab": "Modifier",
+    "preview_tab": "Aperçu",
+    "guest_notice": "Données stockées uniquement sur cet appareil.",
+    "create_account": "Créer un compte",
+    "guest_notice_suffix": "pour sauvegarder en ligne.",
+    "pdf_error": "Erreur lors de la génération du PDF. Réessayez.",
+    "sections": {
+      "personal": "Infos",
+      "summary": "Résumé",
+      "experience": "Expérience",
+      "education": "Formation",
+      "skills": "Compétences",
+      "languages": "Langues",
+      "certifications": "Certifications",
+      "projects": "Projets",
+      "volunteering": "Bénévolat",
+      "interests": "Intérêts"
+    },
+    "styles": {
+      "canadian": "Canadien",
+      "classic": "Classique",
+      "modern": "Moderne",
+      "europass": "Europass",
+      "ats": "ATS Minimal",
+      "gulf": "Golfe",
+      "coming_soon": "(bientôt)"
+    }
+  },
+  "warnings": {
+    "title": "Le style {style} masquera les champs suivants dans le PDF :",
+    "preserved": "Ces données restent sauvegardées et réapparaîtront si vous changez de style.",
+    "fields": {
+      "personal_photo": "Photo",
+      "personal_dateOfBirth": "Date de naissance",
+      "personal_nationality": "Nationalité",
+      "personal_maritalStatus": "Situation familiale",
+      "personal_cin": "CIN",
+      "personal_visaStatus": "Statut visa",
+      "personal_drivingLicense": "Permis de conduire"
+    }
+  }
+}

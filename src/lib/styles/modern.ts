@@ -1,0 +1,51 @@
+import type { StyleDefinition } from "@/types/cv";
+
+export const modernStyle: StyleDefinition = {
+  id: "modern",
+  name: { ar: "النمط الحديث", fr: "Style moderne", en: "Modern" },
+  description: {
+    ar: "تصميم بعمودين مع شريط جانبي، هرمية بصرية قوية. مناسب للمجالات الإبداعية والتقنية.",
+    fr: "Mise en page deux colonnes avec barre latérale, hiérarchie visuelle forte. Adapté aux domaines créatifs et techniques.",
+    en: "Two-column layout with sidebar, strong visual hierarchy. Suited for creative and technical fields.",
+  },
+  pageSize: "A4",
+  direction: "ltr",
+  recommendedPages: [1, 2],
+  sections: [
+    { id: "personal", order: 0, visible: true },
+    { id: "summary", order: 1, visible: true },
+    { id: "experience", order: 2, visible: true },
+    { id: "education", order: 3, visible: true },
+    { id: "skills", order: 4, visible: true },
+    { id: "languages", order: 5, visible: true },
+    { id: "certifications", order: 6, visible: true },
+    { id: "projects", order: 7, visible: true },
+    { id: "volunteering", order: 8, visible: true },
+    { id: "interests", order: 9, visible: true },
+    { id: "references", order: 10, visible: false },
+  ],
+  fieldRules: {
+    "personal.photo": { status: "optional" },
+    "personal.dateOfBirth": { status: "hidden" },
+    "personal.cin": { status: "hidden" },
+    "personal.maritalStatus": { status: "hidden" },
+    "personal.nationality": { status: "hidden" },
+    "personal.drivingLicense": { status: "hidden" },
+  },
+  theme: {
+    fontFamily: "'Helvetica Neue', Arial, sans-serif",
+    arabicFontFamily: "'Noto Naskh Arabic', serif",
+    accentColor: "#2D6A4F",
+    headingColor: "#1B1B2F",
+    bodyColor: "#1B1B2F",
+    mutedColor: "#6B7280",
+    borderColor: "#E5E7EB",
+    fontSize: {
+      name: "22px",
+      heading: "10px",
+      subheading: "10.5px",
+      body: "10px",
+      small: "9px",
+    },
+  },
+};

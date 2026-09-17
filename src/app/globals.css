@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* ── Design tokens ── */
+:root {
+  --ink: #1a1714;
+  --paper: #f7f5f2;
+  --surface: #ffffff;
+  --accent: #b83d10;
+  --accent-subtle: #f5e8e2;
+  --border: #e2ddd8;
+  --muted: #6b6560;
+}
+
+.dark {
+  --ink: #f0ece7;
+  --paper: #1a1714;
+  --surface: #231f1c;
+  --accent: #d95e2a;
+  --accent-subtle: #3a1a0d;
+  --border: #2e2926;
+  --muted: #9b948e;
+}
+
+@theme inline {
+  --color-accent: var(--accent);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-accent-subtle: var(--accent-subtle);
+  /* font variables come from next/font — var(--font-inter) and var(--font-lora) */
+  --font-sans: var(--font-inter, 'Inter'), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-lora, 'Lora'), ui-serif, Georgia, serif;
+  --font-arabic: 'Noto Naskh Arabic', serif;
+}
+
+/* ── Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Arabic text — applied when lang="ar" or dir="rtl" */
+[lang="ar"],
+[dir="rtl"] {
+  font-family: var(--font-arabic);
+}
+
+/* Focus ring — accessible but not ugly */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

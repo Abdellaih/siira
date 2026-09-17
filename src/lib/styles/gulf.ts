@@ -1,0 +1,59 @@
+import type { StyleDefinition } from "@/types/cv";
+
+export const gulfStyle: StyleDefinition = {
+  id: "gulf",
+  name: { ar: "النمط الخليجي", fr: "Style Golfe", en: "Gulf" },
+  description: {
+    ar: "مع صورة وجنسية وحالة التأشيرة. مناسب للإمارات والسعودية وقطر والكويت.",
+    fr: "Avec photo, nationalité et statut de visa. Adapté aux EAU, Arabie saoudite, Qatar, Koweït.",
+    en: "With photo, nationality and visa status. Suited for UAE, Saudi Arabia, Qatar, Kuwait.",
+  },
+  pageSize: "A4",
+  direction: "ltr",
+  recommendedPages: [1, 2],
+  sections: [
+    { id: "personal", order: 0, visible: true },
+    { id: "summary", order: 1, visible: true },
+    { id: "experience", order: 2, visible: true },
+    { id: "education", order: 3, visible: true },
+    { id: "skills", order: 4, visible: true },
+    { id: "languages", order: 5, visible: true },
+    { id: "certifications", order: 6, visible: true },
+    { id: "projects", order: 7, visible: true },
+    { id: "volunteering", order: 8, visible: true },
+    { id: "interests", order: 9, visible: false },
+    { id: "references", order: 10, visible: false },
+  ],
+  fieldRules: {
+    "personal.photo": { status: "optional" },
+    "personal.nationality": { status: "optional" },
+    "personal.visaStatus": { status: "optional" },
+    "personal.dateOfBirth": { status: "optional" },
+    "personal.maritalStatus": { status: "optional" },
+    "personal.drivingLicense": { status: "optional" },
+    "personal.cin": {
+      status: "discouraged",
+      reason: {
+        ar: "لا تشارك رقم البطاقة الوطنية في السيرة الذاتية.",
+        fr: "Ne partagez pas votre numéro CIN dans un CV.",
+        en: "Do not share your national ID number on a CV.",
+      },
+    },
+  },
+  theme: {
+    fontFamily: "'Helvetica Neue', Arial, sans-serif",
+    arabicFontFamily: "'Noto Naskh Arabic', serif",
+    accentColor: "#8B5E3C",
+    headingColor: "#1A2E44",
+    bodyColor: "#1A1A1A",
+    mutedColor: "#555555",
+    borderColor: "#D4B896",
+    fontSize: {
+      name: "21px",
+      heading: "11px",
+      subheading: "10.5px",
+      body: "10px",
+      small: "9px",
+    },
+  },
+};

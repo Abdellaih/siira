@@ -1,0 +1,51 @@
+import type { StyleDefinition } from "@/types/cv";
+
+export const europassStyle: StyleDefinition = {
+  id: "europass",
+  name: { ar: "أوروباس", fr: "Europass", en: "Europass" },
+  description: {
+    ar: "مستوحى من المعيار الأوروبي، مع مستويات CECR للغات. مناسب لإسبانيا وألمانيا وأوروبا.",
+    fr: "Inspiré du standard européen, avec niveaux CECR pour les langues. Adapté à l'Espagne, l'Allemagne, l'Europe.",
+    en: "Inspired by the European standard, with CEFR language levels. Suited for Spain, Germany, Europe.",
+  },
+  pageSize: "A4",
+  direction: "ltr",
+  recommendedPages: [2, 3],
+  sections: [
+    { id: "personal", order: 0, visible: true },
+    { id: "summary", order: 1, visible: true },
+    { id: "experience", order: 2, visible: true },
+    { id: "education", order: 3, visible: true },
+    { id: "skills", order: 4, visible: true },
+    { id: "languages", order: 5, visible: true },
+    { id: "certifications", order: 6, visible: true },
+    { id: "projects", order: 7, visible: true },
+    { id: "volunteering", order: 8, visible: true },
+    { id: "interests", order: 9, visible: true },
+    { id: "references", order: 10, visible: false },
+  ],
+  fieldRules: {
+    "personal.photo": { status: "optional" },
+    "personal.dateOfBirth": { status: "optional" },
+    "personal.nationality": { status: "optional" },
+    "personal.maritalStatus": { status: "hidden" },
+    "personal.cin": { status: "hidden" },
+    "personal.drivingLicense": { status: "optional" },
+  },
+  theme: {
+    fontFamily: "'Arial', 'Helvetica Neue', sans-serif",
+    arabicFontFamily: "'Noto Naskh Arabic', serif",
+    accentColor: "#003399",
+    headingColor: "#003399",
+    bodyColor: "#1a1a1a",
+    mutedColor: "#555555",
+    borderColor: "#003399",
+    fontSize: {
+      name: "20px",
+      heading: "10px",
+      subheading: "10px",
+      body: "9.5px",
+      small: "9px",
+    },
+  },
+};

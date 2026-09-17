@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "logo": "سيرة",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "languages": "العربية · Français · English"
+  },
+  "home": {
+    "hero_title": "سيرتك الذاتية، جاهزة لكل وجهة",
+    "hero_subtitle": "أدخل معلوماتك مرة واحدة. اختر النمط — كندي، كلاسيكي، أوروباس، الخليج. حمّل ملف PDF احترافياً.",
+    "cta": "إنشاء سيرتي الذاتية مجاناً",
+    "cta_note": "بدون تسجيل · البيانات على جهازك فقط",
+    "how_title": "كيف يعمل التطبيق",
+    "step1_title": "أدخل ملفك الشخصي",
+    "step1_body": "المعلومات الشخصية، الخبرات، التعليم، المهارات. مرة واحدة فقط.",
+    "step2_title": "اختر النمط",
+    "step2_body": "كل نمط يطبّق أعراف البلد المستهدف. انتقل بين الأنماط دون فقدان بياناتك.",
+    "step3_title": "حمّل ملف PDF",
+    "step3_body": "ملف PDF احترافي مع نص قابل للتحديد وتنسيق متطابق للمعاينة."
+  },
+  "editor": {
+    "saving": "جارٍ الحفظ…",
+    "download": "تحميل PDF",
+    "downloading": "جارٍ الإنشاء…",
+    "edit_tab": "تعديل",
+    "preview_tab": "معاينة",
+    "guest_notice": "البيانات مخزّنة على هذا الجهاز فقط.",
+    "create_account": "إنشاء حساب",
+    "guest_notice_suffix": "للحفظ عبر الإنترنت.",
+    "pdf_error": "فشل إنشاء ملف PDF. يرجى المحاولة مجدداً.",
+    "sections": {
+      "personal": "معلومات",
+      "summary": "ملخص",
+      "experience": "الخبرة",
+      "education": "التعليم",
+      "skills": "المهارات",
+      "languages": "اللغات",
+      "certifications": "الشهادات",
+      "projects": "المشاريع",
+      "volunteering": "التطوع",
+      "interests": "الاهتمامات"
+    },
+    "styles": {
+      "canadian": "كندي",
+      "classic": "كلاسيكي",
+      "modern": "حديث",
+      "europass": "أوروباس",
+      "ats": "ATS مبسّط",
+      "gulf": "خليجي",
+      "coming_soon": "(قريباً)"
+    }
+  },
+  "warnings": {
+    "title": "سيُخفي نمط {style} الحقول التالية من ملف PDF:",
+    "preserved": "تظل هذه البيانات محفوظة وستعود للظهور عند تغيير النمط.",
+    "fields": {
+      "personal_photo": "الصورة الشخصية",
+      "personal_dateOfBirth": "تاريخ الميلاد",
+      "personal_nationality": "الجنسية",
+      "personal_maritalStatus": "الحالة الاجتماعية",
+      "personal_cin": "رقم البطاقة الوطنية",
+      "personal_visaStatus": "حالة التأشيرة",
+      "personal_drivingLicense": "رخصة القيادة"
+    }
+  }
+}

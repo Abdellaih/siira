@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "logo": "سيرة",
+    "login": "Log in",
+    "signup": "Sign up",
+    "languages": "العربية · Français · English"
+  },
+  "home": {
+    "hero_title": "Your CV, ready for every destination",
+    "hero_subtitle": "Fill in your information once. Pick a style — Canadian, Classic, Europass, Gulf. Download a professional PDF.",
+    "cta": "Create my CV for free",
+    "cta_note": "No sign-up · Data stays on your device",
+    "how_title": "How it works",
+    "step1_title": "Fill in your profile",
+    "step1_body": "Personal info, experience, education, skills. Once.",
+    "step2_title": "Choose your style",
+    "step2_body": "Each style applies the conventions of the target country. Switch styles without losing your data.",
+    "step3_title": "Download the PDF",
+    "step3_body": "A professional PDF with selectable text and pixel-perfect layout."
+  },
+  "editor": {
+    "saving": "Saving…",
+    "download": "Download PDF",
+    "downloading": "Generating…",
+    "edit_tab": "Edit",
+    "preview_tab": "Preview",
+    "guest_notice": "Data stored only on this device.",
+    "create_account": "Create an account",
+    "guest_notice_suffix": "to save online.",
+    "pdf_error": "PDF generation failed. Please try again.",
+    "sections": {
+      "personal": "Info",
+      "summary": "Summary",
+      "experience": "Experience",
+      "education": "Education",
+      "skills": "Skills",
+      "languages": "Languages",
+      "certifications": "Certifications",
+      "projects": "Projects",
+      "volunteering": "Volunteering",
+      "interests": "Interests"
+    },
+    "styles": {
+      "canadian": "Canadian",
+      "classic": "Classic",
+      "modern": "Modern",
+      "europass": "Europass",
+      "ats": "ATS Minimal",
+      "gulf": "Gulf",
+      "coming_soon": "(coming soon)"
+    }
+  },
+  "warnings": {
+    "title": "The {style} style will hide these fields in the PDF:",
+    "preserved": "This data is kept and will reappear if you switch styles.",
+    "fields": {
+      "personal_photo": "Photo",
+      "personal_dateOfBirth": "Date of birth",
+      "personal_nationality": "Nationality",
+      "personal_maritalStatus": "Marital status",
+      "personal_cin": "National ID (CIN)",
+      "personal_visaStatus": "Visa status",
+      "personal_drivingLicense": "Driving license"
+    }
+  }
+}
