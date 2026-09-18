@@ -47,6 +47,7 @@ export const classicStyle: StyleDefinition = {
     bodyColor: "#222222",
     mutedColor: "#555555",
     borderColor: "#CCCCCC",
+    sectionTitleStyle: "underline",
     fontSize: {
       name: "20px",
       heading: "11px",

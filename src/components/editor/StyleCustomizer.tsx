@@ -1,24 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import type { CVCustomization } from "@/types/cv";
+import type { CVCustomization, StyleId } from "@/types/cv";
 import {
-  COLOR_PRESETS,
+  STYLE_PRESETS,
   FONT_PRESETS,
   DENSITY_OPTIONS,
+  getPresetForStyle,
 } from "@/lib/styles/customization";
 
 interface Props {
+  styleId: StyleId;
   value: CVCustomization;
   onChange: (patch: Partial<CVCustomization>) => void;
 }
 
-export default function StyleCustomizer({ value, onChange }: Props) {
+const STYLE_ICONS: Record<string, string> = {
+  underline: "─",
+  filled:    "█",
+  "left-bar": "│",
+  plain:     "·",
+};
+
+export default function StyleCustomizer({ styleId, value, onChange }: Props) {
   const [open, setOpen] = useState(false);
 
-  const currentColor = value.accentColor ?? null;
+  const presets = STYLE_PRESETS[styleId] ?? [];
+  const activePreset = getPresetForStyle(styleId, value.presetId);
   const currentFont = value.fontFamily ?? "sans";
   const currentDensity = value.density ?? "normal";
+
+  const hasCustom = value.presetId || value.fontFamily || value.density;
 
   return (
     <div className="relative">
@@ -27,100 +39,110 @@ export default function StyleCustomizer({ value, onChange }: Props) {
         onClick={() => setOpen((o) => !o)}
         className="flex items-center gap-1.5 rounded border border-stone-200 bg-white px-3 py-1.5 text-sm text-stone-600 transition hover:border-accent hover:text-accent dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300"
       >
-        {/* Color dot showing current accent */}
         <span
-          className="inline-block h-3 w-3 rounded-full border border-stone-300"
-          style={{ background: currentColor ?? "#1A3A5C" }}
+          className="inline-block h-3 w-3 rounded-full border border-stone-300/50"
+          style={{ background: activePreset.accentColor }}
         />
-        Personnaliser
+        {activePreset.name}
         <span className="text-stone-400">{open ? "▲" : "▼"}</span>
       </button>
 
       {open && (
         <>
-          {/* Backdrop */}
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
 
-          {/* Panel */}
-          <div className="absolute right-0 top-full z-20 mt-1 w-64 rounded-lg border border-stone-200 bg-white p-4 shadow-lg dark:border-stone-700 dark:bg-stone-900">
-            {/* Color */}
-            <div className="mb-4">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
-                Couleur
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {COLOR_PRESETS.map((c) => (
+          <div className="absolute right-0 top-full z-20 mt-1 w-72 rounded-lg border border-stone-200 bg-white p-4 shadow-xl dark:border-stone-700 dark:bg-stone-900">
+
+            {/* Presets */}
+            <p className="mb-2.5 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+              Thème
+            </p>
+            <div className="mb-4 grid grid-cols-2 gap-2">
+              {presets.map((preset) => {
+                const active = activePreset.id === preset.id;
+                return (
                   <button
-                    key={c.value}
+                    key={preset.id}
                     type="button"
-                    title={c.label}
-                    onClick={() => onChange({ accentColor: c.value })}
-                    className="relative h-7 w-7 rounded-full transition hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                    style={{ background: c.value }}
+                    onClick={() => onChange({ presetId: preset.id })}
+                    className={`flex items-center gap-2 rounded-md border px-3 py-2 text-left text-sm transition ${
+                      active
+                        ? "border-accent bg-accent/5 dark:bg-accent/10"
+                        : "border-stone-200 hover:border-stone-300 dark:border-stone-700 dark:hover:border-stone-500"
+                    }`}
                   >
-                    {currentColor === c.value && (
-                      <span className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold">
-                        ✓
-                      </span>
+                    <span
+                      className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] text-white/90"
+                      style={{ background: preset.accentColor }}
+                      title={preset.sectionTitleStyle}
+                    >
+                      {STYLE_ICONS[preset.sectionTitleStyle]}
+                    </span>
+                    <span
+                      className={`font-medium ${active ? "text-accent" : "text-stone-700 dark:text-stone-200"}`}
+                    >
+                      {preset.name}
+                    </span>
+                    {active && (
+                      <span className="ms-auto text-accent">✓</span>
                     )}
                   </button>
-                ))}
-              </div>
+                );
+              })}
             </div>
 
             {/* Font */}
-            <div className="mb-4">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
-                Police
-              </p>
-              <div className="flex flex-col gap-1">
-                {FONT_PRESETS.map((f) => (
-                  <button
-                    key={f.key}
-                    type="button"
-                    onClick={() => onChange({ fontFamily: f.key })}
-                    className={`rounded px-3 py-2 text-left text-sm transition ${
-                      currentFont === f.key
-                        ? "bg-accent/10 font-medium text-accent"
-                        : "text-stone-700 hover:bg-stone-50 dark:text-stone-300 dark:hover:bg-stone-800"
-                    }`}
-                    style={{ fontFamily: f.family }}
-                  >
-                    {f.label} — Aa Bb Cc
-                  </button>
-                ))}
-              </div>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+              Police
+            </p>
+            <div className="mb-4 flex flex-col gap-1">
+              {FONT_PRESETS.map((f) => (
+                <button
+                  key={f.key}
+                  type="button"
+                  onClick={() => onChange({ fontFamily: f.key })}
+                  className={`rounded px-3 py-1.5 text-left text-sm transition ${
+                    currentFont === f.key
+                      ? "bg-accent/10 font-semibold text-accent"
+                      : "text-stone-700 hover:bg-stone-50 dark:text-stone-300 dark:hover:bg-stone-800"
+                  }`}
+                  style={{ fontFamily: f.family }}
+                >
+                  {f.label}
+                  <span className="ms-2 text-stone-400">Aa Bb 123</span>
+                </button>
+              ))}
             </div>
 
             {/* Density */}
-            <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
-                Espacement
-              </p>
-              <div className="flex rounded border border-stone-200 dark:border-stone-700 overflow-hidden">
-                {DENSITY_OPTIONS.map((d) => (
-                  <button
-                    key={d.value}
-                    type="button"
-                    onClick={() => onChange({ density: d.value })}
-                    className={`flex-1 py-1.5 text-xs transition ${
-                      currentDensity === d.value
-                        ? "bg-accent text-white font-medium"
-                        : "text-stone-600 hover:bg-stone-50 dark:text-stone-300 dark:hover:bg-stone-800"
-                    }`}
-                  >
-                    {d.label}
-                  </button>
-                ))}
-              </div>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+              Espacement
+            </p>
+            <div className="mb-3 flex overflow-hidden rounded border border-stone-200 dark:border-stone-700">
+              {DENSITY_OPTIONS.map((d) => (
+                <button
+                  key={d.value}
+                  type="button"
+                  onClick={() => onChange({ density: d.value })}
+                  className={`flex-1 py-1.5 text-xs transition ${
+                    currentDensity === d.value
+                      ? "bg-accent font-semibold text-white"
+                      : "text-stone-600 hover:bg-stone-50 dark:text-stone-300 dark:hover:bg-stone-800"
+                  }`}
+                >
+                  {d.label}
+                </button>
+              ))}
             </div>
 
             {/* Reset */}
-            {(value.accentColor || value.fontFamily || value.density) && (
+            {hasCustom && (
               <button
                 type="button"
-                onClick={() => onChange({ accentColor: undefined, fontFamily: undefined, density: undefined })}
-                className="mt-3 text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
+                onClick={() =>
+                  onChange({ presetId: undefined, fontFamily: undefined, density: undefined })
+                }
+                className="text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
               >
                 Réinitialiser
               </button>

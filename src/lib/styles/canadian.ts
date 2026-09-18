@@ -80,6 +80,7 @@ export const canadianStyle: StyleDefinition = {
     bodyColor: "#1C1C1C",
     mutedColor: "#5A5A5A",
     borderColor: "#CCCCCC",
+    sectionTitleStyle: "underline",
     fontSize: {
       name: "22px",
       heading: "11px",

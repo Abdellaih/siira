@@ -2,7 +2,7 @@ import React from "react";
 import type { CVProfile } from "@/types/cv";
 import { classicStyle } from "@/lib/styles/classic";
 import { isFieldVisible, getPageDimensions } from "@/lib/styles/engine";
-import { resolveTheme } from "@/lib/styles/customization";
+import { resolveTheme, getSectionTitleStyle } from "@/lib/styles/customization";
 
 interface Props {
   cv: CVProfile;
@@ -94,16 +94,7 @@ export default function ClassicPreview({ cv, forPDF = false }: Props) {
       borderTop: `2px solid ${theme.accentColor}`,
       marginBottom: "10px",
     },
-    sectionTitle: {
-      fontSize: theme.fontSize.heading,
-      fontWeight: 700,
-      color: theme.headingColor,
-      textTransform: "uppercase" as const,
-      letterSpacing: "0.6px",
-      borderBottom: `1px solid ${theme.borderColor}`,
-      paddingBottom: "3px",
-      marginBottom: "8px",
-    },
+    sectionTitle: getSectionTitleStyle(theme) as React.CSSProperties,
     section: { marginBottom: theme.sectionSpacing },
     entryHeader: {
       display: "flex",

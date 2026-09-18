@@ -40,6 +40,7 @@ export const modernStyle: StyleDefinition = {
     bodyColor: "#1B1B2F",
     mutedColor: "#6B7280",
     borderColor: "#E5E7EB",
+    sectionTitleStyle: "underline",
     fontSize: {
       name: "22px",
       heading: "10px",

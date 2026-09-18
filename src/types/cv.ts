@@ -110,10 +110,11 @@ export interface ReferenceEntry {
 }
 
 export type DensityOption = "compact" | "normal" | "spacious";
+export type SectionTitleStyle = "underline" | "filled" | "left-bar" | "plain";
 
 export interface CVCustomization {
-  accentColor?: string;   // must be one of the preset values
-  fontFamily?: string;    // must be one of the preset font keys
+  presetId?: string;      // named preset for this style (color + section title style)
+  fontFamily?: string;    // key: "sans" | "inter" | "serif"
   density?: DensityOption;
 }
 
@@ -194,6 +195,7 @@ export interface StyleTheme {
   bodyColor: string;
   mutedColor: string;
   borderColor: string;
+  sectionTitleStyle: SectionTitleStyle;
   fontSize: {
     name: string;
     heading: string;

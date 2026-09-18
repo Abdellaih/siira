@@ -48,6 +48,7 @@ export const gulfStyle: StyleDefinition = {
     bodyColor: "#1A1A1A",
     mutedColor: "#555555",
     borderColor: "#D4B896",
+    sectionTitleStyle: "filled",
     fontSize: {
       name: "21px",
       heading: "11px",

@@ -2,7 +2,7 @@ import React from "react";
 import type { CVProfile } from "@/types/cv";
 import { modernStyle } from "@/lib/styles/modern";
 import { isFieldVisible, getPageDimensions } from "@/lib/styles/engine";
-import { resolveTheme } from "@/lib/styles/customization";
+import { resolveTheme, getSectionTitleStyle } from "@/lib/styles/customization";
 
 interface Props { cv: CVProfile; forPDF?: boolean; }
 
@@ -57,16 +57,8 @@ export default function ModernPreview({ cv, forPDF = false }: Props) {
   };
 
   const mainSectionTitle: React.CSSProperties = {
-    fontSize: "11px",
-    fontWeight: 700,
-    textTransform: "uppercase" as const,
-    letterSpacing: "0.8px",
-    color: theme.accentColor,
-    marginBottom: "8px",
+    ...getSectionTitleStyle(theme),
     marginTop: "12px",
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
   };
 
   const entryTitle: React.CSSProperties = {

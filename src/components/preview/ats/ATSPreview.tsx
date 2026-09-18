@@ -2,7 +2,7 @@ import React from "react";
 import type { CVProfile } from "@/types/cv";
 import { atsStyle } from "@/lib/styles/ats";
 import { getPageDimensions } from "@/lib/styles/engine";
-import { resolveTheme } from "@/lib/styles/customization";
+import { resolveTheme, getSectionTitleStyle } from "@/lib/styles/customization";
 
 interface Props { cv: CVProfile; forPDF?: boolean; }
 
@@ -64,15 +64,11 @@ export default function ATSPreview({ cv, forPDF = false }: Props) {
       marginBottom: "14px",
     },
     sectionTitle: {
-      fontSize: theme.fontSize.heading,
-      fontWeight: 700,
-      textTransform: "uppercase" as const,
-      letterSpacing: "1px",
+      ...getSectionTitleStyle(theme),
       borderBottom: `1.5px solid ${theme.borderColor}`,
       paddingBottom: "2px",
-      marginBottom: "8px",
       marginTop: "12px",
-    },
+    } as React.CSSProperties,
     entryRow: { marginBottom: "8px" },
     entryHeader: {
       display: "flex",

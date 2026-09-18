@@ -2,7 +2,7 @@ import React from "react";
 import type { CVProfile } from "@/types/cv";
 import { gulfStyle } from "@/lib/styles/gulf";
 import { isFieldVisible, getPageDimensions } from "@/lib/styles/engine";
-import { resolveTheme } from "@/lib/styles/customization";
+import { resolveTheme, getSectionTitleStyle } from "@/lib/styles/customization";
 
 interface Props { cv: CVProfile; forPDF?: boolean; }
 
@@ -80,16 +80,9 @@ export default function GulfPreview({ cv, forPDF = false }: Props) {
       color: theme.mutedColor,
     },
     sectionTitle: {
-      fontSize: theme.fontSize.heading,
-      fontWeight: 700,
-      color: "#fff",
-      backgroundColor: theme.headingColor,
-      padding: "3px 8px",
-      letterSpacing: "0.6px",
-      textTransform: "uppercase" as const,
-      marginBottom: "8px",
+      ...getSectionTitleStyle(theme),
       marginTop: "10px",
-    },
+    } as React.CSSProperties,
     entryHeader: { display: "flex", justifyContent: "space-between", marginBottom: "1px" },
     bold: { fontWeight: 700, fontSize: "10.5px", color: theme.headingColor },
     date: { fontSize: theme.fontSize.small, color: theme.mutedColor, whiteSpace: "nowrap" as const, marginLeft: "8px" },

@@ -39,7 +39,8 @@ export const europassStyle: StyleDefinition = {
     headingColor: "#003399",
     bodyColor: "#1a1a1a",
     mutedColor: "#555555",
-    borderColor: "#003399",
+    borderColor: "#CCCCCC",
+    sectionTitleStyle: "plain",
     fontSize: {
       name: "20px",
       heading: "10px",

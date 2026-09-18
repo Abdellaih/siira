@@ -46,7 +46,8 @@ export const atsStyle: StyleDefinition = {
     headingColor: "#000000",
     bodyColor: "#000000",
     mutedColor: "#333333",
-    borderColor: "#000000",
+    borderColor: "#CCCCCC",
+    sectionTitleStyle: "plain",
     fontSize: {
       name: "18px",
       heading: "11px",

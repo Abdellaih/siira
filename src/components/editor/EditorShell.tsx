@@ -165,6 +165,7 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
           </select>
 
           <StyleCustomizer
+            styleId={cv.activeStyleId}
             value={cv.customization}
             onChange={(patch) =>
               update((p) => ({

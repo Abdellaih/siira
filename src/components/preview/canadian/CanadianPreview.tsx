@@ -2,7 +2,7 @@ import React from "react";
 import type { CVProfile } from "@/types/cv";
 import { isFieldVisible, getPageDimensions } from "@/lib/styles/engine";
 import { canadianStyle } from "@/lib/styles/canadian";
-import { resolveTheme } from "@/lib/styles/customization";
+import { resolveTheme, getSectionTitleStyle } from "@/lib/styles/customization";
 
 interface Props {
   cv: CVProfile;
@@ -82,14 +82,7 @@ export default function CanadianPreview({ cv, forPDF = false }: Props) {
       borderTop: `1.5px solid ${theme.accentColor}`,
       marginBottom: "10px",
     },
-    sectionTitle: {
-      fontSize: theme.fontSize.heading,
-      fontWeight: 700,
-      color: theme.accentColor,
-      textTransform: "uppercase" as const,
-      letterSpacing: "0.8px",
-      marginBottom: "8px",
-    },
+    sectionTitle: getSectionTitleStyle(theme) as React.CSSProperties,
     section: {
       marginBottom: theme.sectionSpacing,
     },
