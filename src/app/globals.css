@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Use .dark class (not OS media query) for dark: utilities */
+@variant dark (&:where(.dark, .dark *));
+
 /* ── Design tokens ── */
 :root {
   --ink: #1a1714;
