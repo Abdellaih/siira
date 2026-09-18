@@ -28,6 +28,9 @@
     "create_account": "Créer un compte",
     "guest_notice_suffix": "pour sauvegarder en ligne.",
     "pdf_error": "Erreur lors de la génération du PDF. Réessayez.",
+    "summary_label": "Résumé professionnel",
+    "summary_placeholder": "Ingénieur logiciel avec 5 ans d'expérience en développement web…",
+    "summary_hint": "3–4 phrases. Mettez en avant vos points forts et ce que vous apportez.",
     "sections": {
       "personal": "Infos",
       "summary": "Résumé",

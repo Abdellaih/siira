@@ -28,6 +28,9 @@
     "create_account": "إنشاء حساب",
     "guest_notice_suffix": "للحفظ عبر الإنترنت.",
     "pdf_error": "فشل إنشاء ملف PDF. يرجى المحاولة مجدداً.",
+    "summary_label": "الملخص المهني",
+    "summary_placeholder": "مهندس برمجيات بخبرة 5 سنوات في تطوير الويب…",
+    "summary_hint": "3–4 جمل. أبرز نقاط قوتك وما تقدمه للمنصب.",
     "sections": {
       "personal": "معلومات",
       "summary": "ملخص",

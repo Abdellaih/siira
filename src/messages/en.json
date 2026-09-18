@@ -28,6 +28,9 @@
     "create_account": "Create an account",
     "guest_notice_suffix": "to save online.",
     "pdf_error": "PDF generation failed. Please try again.",
+    "summary_label": "Professional summary",
+    "summary_placeholder": "Software engineer with 5 years of experience in web development…",
+    "summary_hint": "3–4 sentences. Highlight your key strengths and what you bring to the role.",
     "sections": {
       "personal": "Info",
       "summary": "Summary",

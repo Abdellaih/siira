@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useDeferredValue, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import type { CVProfile } from "@/types/cv";
 import { getStyle } from "@/lib/styles";
 import { getStyleWarnings } from "@/lib/styles/engine";
@@ -16,6 +17,7 @@ import SectionVolunteering from "./SectionVolunteering";
 import SectionInterests from "./SectionInterests";
 import StyleWarningBanner from "./StyleWarningBanner";
 import StyleCustomizer from "./StyleCustomizer";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 type SectionId =
   | "personal"
@@ -29,17 +31,9 @@ type SectionId =
   | "volunteering"
   | "interests";
 
-const SECTIONS: { id: SectionId; label: string }[] = [
-  { id: "personal", label: "Infos" },
-  { id: "summary", label: "Résumé" },
-  { id: "experience", label: "Expérience" },
-  { id: "education", label: "Formation" },
-  { id: "skills", label: "Compétences" },
-  { id: "languages", label: "Langues" },
-  { id: "certifications", label: "Certifications" },
-  { id: "projects", label: "Projets" },
-  { id: "volunteering", label: "Bénévolat" },
-  { id: "interests", label: "Intérêts" },
+const SECTION_IDS: SectionId[] = [
+  "personal", "summary", "experience", "education", "skills",
+  "languages", "certifications", "projects", "volunteering", "interests",
 ];
 
 interface Props {
@@ -49,6 +43,7 @@ interface Props {
 }
 
 export default function EditorShell({ cv, saving, onUpdate }: Props) {
+  const t = useTranslations("editor");
   const [activeSection, setActiveSection] = useState<SectionId>("personal");
   const [mobileTab, setMobileTab] = useState<"edit" | "preview">("edit");
   const [downloading, setDownloading] = useState(false);
@@ -57,7 +52,6 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
   const style = getStyle(cv.activeStyleId);
   const warnings = getStyleWarnings(cv, style, cv.cvLanguage);
 
-  // Single updater — parent (useGuestCV) is the source of truth
   const update = useCallback(
     (updater: (prev: CVProfile) => CVProfile) => onUpdate(updater),
     [onUpdate],
@@ -80,7 +74,7 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
       a.click();
       URL.revokeObjectURL(url);
     } catch {
-      alert("Erreur lors de la génération du PDF. Réessayez.");
+      alert(t("pdf_error"));
     } finally {
       setDownloading(false);
     }
@@ -100,16 +94,16 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
         return (
           <div className="flex flex-col gap-2">
             <label className="text-xs font-medium text-stone-600 dark:text-stone-400">
-              Résumé professionnel
+              {t("summary_label")}
             </label>
             <textarea
               rows={8}
               value={cv.summary}
-              placeholder="Ingénieur logiciel avec 5 ans d'expérience…"
+              placeholder={t("summary_placeholder")}
               onChange={(e) => update((p) => ({ ...p, summary: e.target.value }))}
               className="w-full resize-none rounded border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none transition focus:border-accent focus:ring-1 focus:ring-accent dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
             />
-            <p className="text-xs text-stone-400">3–4 phrases. Mettez en avant vos points forts et ce que vous apportez.</p>
+            <p className="text-xs text-stone-400">{t("summary_hint")}</p>
           </div>
         );
       case "experience":
@@ -144,7 +138,7 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
             {cv.name}
           </span>
           {saving && (
-            <span className="animate-pulse text-xs text-stone-400">Enregistrement…</span>
+            <span className="animate-pulse text-xs text-stone-400">{t("saving")}</span>
           )}
         </div>
 
@@ -156,12 +150,9 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
             }
             className="hidden rounded border border-stone-200 bg-white px-3 py-1.5 text-sm text-stone-700 outline-none focus:border-accent dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 sm:block"
           >
-            <option value="canadian">Canadien</option>
-            <option value="classic">Classique</option>
-            <option value="modern">Moderne</option>
-            <option value="europass">Europass</option>
-            <option value="ats">ATS Minimal</option>
-            <option value="gulf">Golfe</option>
+            {(["canadian", "classic", "modern", "europass", "ats", "gulf"] as const).map((id) => (
+              <option key={id} value={id}>{t(`styles.${id}`)}</option>
+            ))}
           </select>
 
           <StyleCustomizer
@@ -175,13 +166,15 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
             }
           />
 
+          <ThemeToggle />
+
           <button
             type="button"
             onClick={downloadPDF}
             disabled={downloading}
             className="rounded bg-accent px-4 py-1.5 text-sm font-medium text-white transition hover:bg-accent/90 disabled:opacity-60"
           >
-            {downloading ? "Génération…" : "Télécharger PDF"}
+            {downloading ? t("downloading") : t("download")}
           </button>
         </div>
       </header>
@@ -199,7 +192,7 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
                 : "text-stone-500"
             }`}
           >
-            {tab === "edit" ? "Modifier" : "Aperçu"}
+            {tab === "edit" ? t("edit_tab") : t("preview_tab")}
           </button>
         ))}
       </div>
@@ -214,18 +207,18 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
         >
           {/* Section nav */}
           <nav className="flex overflow-x-auto border-b border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-950">
-            {SECTIONS.map((s) => (
+            {SECTION_IDS.map((id) => (
               <button
-                key={s.id}
+                key={id}
                 type="button"
-                onClick={() => setActiveSection(s.id)}
+                onClick={() => setActiveSection(id)}
                 className={`shrink-0 px-3 py-3 text-xs transition sm:text-sm ${
-                  activeSection === s.id
+                  activeSection === id
                     ? "border-b-2 border-accent font-medium text-accent"
                     : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200"
                 }`}
               >
-                {s.label}
+                {t(`sections.${id}`)}
               </button>
             ))}
           </nav>
@@ -233,7 +226,10 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
           {/* Warning banner */}
           {warnings.length > 0 && (
             <div className="border-b border-stone-200 p-3 dark:border-stone-700">
-              <StyleWarningBanner warnings={warnings} styleName={style.name.fr} />
+              <StyleWarningBanner
+                warnings={warnings}
+                styleName={t(`styles.${cv.activeStyleId}`)}
+              />
             </div>
           )}
 
@@ -258,11 +254,11 @@ export default function EditorShell({ cv, saving, onUpdate }: Props) {
 
       {/* Guest notice */}
       <div className="border-t border-stone-200 bg-stone-50 px-4 py-2 text-center text-xs text-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
-        Données stockées uniquement sur cet appareil.{" "}
+        {t("guest_notice")}{" "}
         <a href="/auth/signup" className="text-accent hover:underline">
-          Créer un compte
+          {t("create_account")}
         </a>{" "}
-        pour sauvegarder en ligne.
+        {t("guest_notice_suffix")}
       </div>
     </div>
   );

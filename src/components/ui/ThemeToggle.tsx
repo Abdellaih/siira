@@ -6,11 +6,8 @@ export default function ThemeToggle() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("siira-theme");
-    setDark(
-      stored === "dark" ||
-        (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches),
-    );
+    // Sync with what the inline <head> script already applied to <html>
+    setDark(document.documentElement.classList.contains("dark"));
   }, []);
 
   function toggle() {
@@ -24,11 +21,11 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label={dark ? "Passer au mode clair" : "Passer au mode sombre"}
+      aria-label={dark ? "Mode clair" : "Mode sombre"}
       className="rounded p-1.5 text-sm transition hover:bg-stone-100 dark:hover:bg-stone-800"
       style={{ color: "var(--muted)" }}
     >
-      {dark ? "☀️" : "🌙"}
+      {dark ? "☀" : "☾"}
     </button>
   );
 }
